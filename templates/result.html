@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Result - Password Breach Checker</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body class="bg-gray-100">
+    <header class="bg-green-500 text-white p-4 text-center shadow-md">
+        <h1 class="text-3xl font-bold">Password Breach Checker - Results</h1>
+        <nav class="mt-4">
+            <ul class="flex justify-center space-x-4 flex-wrap">
+                <li><a class="hover:underline hover:text-green-200 transition duration-300" href="{{ url_for('home') }}">Home</a></li>
+                <li><a class="hover:underline hover:text-green-200 transition duration-300" href="{{ url_for('how_it_works') }}">How It Works</a></li>
+                <li><a class="hover:underline hover:text-green-200 transition duration-300" href="{{ url_for('data') }}">Data</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="p-6">
+        <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-2xl font-semibold mb-4">Check Results</h2>
+            
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                <p class="text-lg font-medium text-gray-800">Email: <span class="text-blue-600">{{ email }}</span></p>
+            </div>
+
+            {% if pwned %}
+                <div class="bg-red-50 border-l-4 border-red-500 p-4 mb-6">
+                    <p class="text-red-700 font-semibold">⚠️ Alert: Your email has been found in {{ count }} data breach(es)</p>
+                    <p class="text-red-600 mt-2">We recommend changing your password immediately.</p>
+                </div>
+            {% else %}
+                <div class="bg-green-50 border-l-4 border-green-500 p-4 mb-6">
+                    <p class="text-green-700 font-semibold">✓ Good News: Your email has not been found in known breaches</p>
+                    <p class="text-green-600 mt-2">However, you should still maintain strong passwords and enable 2FA.</p>
+                </div>
+            {% endif %}
+
+            <div class="space-y-3">
+                <a 
+                    href="{{ url_for('home') }}" 
+                    class="block w-full bg-green-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-green-600 transition duration-200 text-center"
+                >
+                    Check Another Email
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-200 text-center p-3 mt-6">
+        <p>&copy; 2024 Password Breach Checker - Powered by Have I Been Pwned API</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How It Works</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body class="bg-gray-100">
+    <header class="bg-green-500 text-white p-4 text-center shadow-md">
+        <h1 class="text-3xl font-bold">How It Works</h1>
+        <nav class="mt-4">
+            <ul class="flex justify-center space-x-4 flex-wrap">
+                <li><a class="hover:underline hover:text-green-200 transition duration-300" href="{{ url_for('home') }}">Home</a></li>
+                <li><a class="hover:underline hover:text-green-200 transition duration-300" href="{{ url_for('how_it_works') }}">How It Works</a></li>
+                <li><a class="hover:underline hover:text-green-200 transition duration-300" href="{{ url_for('data') }}">Data</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="p-6">
+        <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-2xl font-semibold mb-6">Understanding the Process</h2>
+            
+            <div class="space-y-6">
+                <div class="border-l-4 border-green-500 pl-4">
+                    <h3 class="text-lg font-semibold mb-2">Step 1: Hash Your Email</h3>
+                    <p class="text-gray-700">When you submit your email, it's hashed using SHA-1. Your actual email is never sent to our servers.</p>
+                </div>
+
+                <div class="border-l-4 border-green-500 pl-4">
+                    <h3 class="text-lg font-semibold mb-2">Step 2: Query Pwned Passwords API</h3>
+                    <p class="text-gray-700">We use the Have I Been Pwned API to check if your email hash exists in known breaches. The API only receives the first 5 characters of the hash (k-anonymity).</p>
+                </div>
+
+                <div class="border-l-4 border-green-500 pl-4">
+                    <h3 class="text-lg font-semibold mb-2">Step 3: Secure Comparison</h3>
+                    <p class="text-gray-700">We compare the remaining characters locally without exposing your full email hash to anyone.</p>
+                </div>
+
+                <div class="border-l-4 border-green-500 pl-4">
+                    <h3 class="text-lg font-semibold mb-2">Step 4: Results</h3>
+                    <p class="text-gray-700">You get instant results about whether your email has been found in any data breaches.</p>
+                </div>
+            </div>
+
+            <div class="mt-8 bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <p class="text-blue-700"><strong>Privacy Note:</strong> We prioritize your privacy. Your email is never stored on our servers, and we don't keep logs of searches.</p>
+            </div>
+
+            <div class="mt-6">
+                <a 
+                    href="{{ url_for('home') }}" 
+                    class="inline-block bg-green-500 text-white font-semibold py-2 px-6 rounded-lg hover:bg-green-600 transition duration-200"
+                >
+                    Back to Home
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-200 text-center p-3 mt-6">
+        <p>&copy; 2024 Password Breach Checker - Powered by Have I Been Pwned API</p>
+    </footer>
+</body>
+</html>

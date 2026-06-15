@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .modal {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div id="termsModal" class="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+        <div class="bg-white p-5 rounded shadow-lg">
+            <h2 class="text-lg font-bold">Terms and Conditions</h2>
+            <p>Please accept our terms and conditions to continue using this website.</p>
+            <button id="acceptTerms" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-200">Accept</button>
+        </div>
+    </div>
+
+    <header class="bg-green-500 text-white p-4 text-center shadow-md">
+        <h1 class="text-3xl font-bold">Welcome to Our Website</h1>
+        <nav>
+            <ul class="flex justify-center space-x-4">
+                <li><a class="hover:underline hover:text-green-200 transition duration-300" href="index.html">Home</a></li>
+                <li><a class="hover:underline hover:text-green-200 transition duration-300" href="how-it-works.html">How It Works</a></li>
+                <li><a class="hover:underline hover:text-green-200 transition duration-300" href="result.html">Result</a></li>
+                <li><a class="hover:underline hover:text-green-200 transition duration-300" href="data.html">Data</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="p-6">
+        <h2 class="text-xl font-semibold mb-2">Home Page</h2>
+        <p class="mt-2 transition duration-300 transform hover:scale-105">Welcome to our website. Navigate through the links above to learn more.</p>
+    </main>
+    
+    <footer class="bg-gray-200 text-center p-3">
+        <p>&copy; 2024 Your Website</p>
+    </footer>
+
+    <script>
+        // Check if terms are accepted
+        if (!localStorage.getItem('termsAccepted')) {
+            document.getElementById('termsModal').style.display = 'flex';
+        }
+
+        // Accept terms and hide modal
+        document.getElementById('acceptTerms').onclick = function() {
+            localStorage.setItem('termsAccepted', 'true');
+            document.getElementById('termsModal').style.display = 'none';
+        };
+    </script>
+</body>
+</html>
